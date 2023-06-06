@@ -24,17 +24,25 @@ Add the username and email for the superuser as follows. Username (leave blank t
 Visit the admin app at http://<>:8000/admin and log in with the superuser account that you have created:
 
 PROGRAM
-<!DOCTYPE html>
-<html>
-    <head></head>
-    <body>
-        <h1>
-            Welcome to Saveetha Engineering College
-        </h1>
-    </body>
-</html>
-OUTPUT
-Screenshot 2023-05-08 214828
+```from django.db import models
+from django.contrib import admin
+class GitDatabase(models.Model):
+    username_primary_key = models.CharField(max_length=30, help_text="User name must be unique", primary_key=True,unique=True)
+    password = models.CharField(max_length=30)
+    firstname = models.CharField(max_length=20)
+    lastname = models.CharField(max_length=20)
+    profile_photo = models.ImageField()
+    email = models.EmailField(max_length=50,unique=True)
+class GitAdmin(admin.ModelAdmin):
+    list_display = ('username_primary_key', 'password', 'firstname', 'lastname','profile_photo','email')
+  ```
+  
+  
+  ### output
+  ![image](https://github.com/KISHORPRIAN/django-orm-app/assets/124072773/e09eac43-22f6-45f2-8257-dd88cb4c7e03)
+
+
 
 ## RESULT
-http://kishorprian.student.saveetha.in:8000/admin/auth/user/
+
+Thus a Django application is successfully developed to store and retrieve data from a database using Object Relational Mapping(ORM).
